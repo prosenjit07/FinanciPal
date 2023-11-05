@@ -9,14 +9,24 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.android.financipal.databinding.ActivityAddExpenseBinding;
+import com.google.firebase.Firebase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Calendar;
+import java.util.UUID;
 
 public class AddExpenseActivity extends AppCompatActivity {
     ActivityAddExpenseBinding  binding;
+    private String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityAddExpenseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        type= getIntent().getStringExtra("type");
+
+
     }
 
 
@@ -40,12 +50,35 @@ public class AddExpenseActivity extends AppCompatActivity {
     }
 
     private void createExpense() {
-        string amount=binding.amount.getText().toString();
-        string note=binding.amount.getText().toString();
-        string category=binding.amount.getText().toString();
+        String expenseId= UUID.randomUUID().toString();
+        String amount=binding.amount.getText().toString();
+        String note=binding.amount.getText().toString();
+        String category=binding.amount.getText().toString();
         //check which radio button check
+        String type;
         boolean incomeChecked =binding.incomeRadio.isChecked();
 
+        if(incomeChecked){
+            type="Income";
+        }
+        else{
+            type="Expense";
+        }
+
+        if(amount.trim().length()==0){
+            binding.amount.setError("Empty");
+            return;
+
+        }
+        ExpenseMode expenseMode = new ExpenseMode(expenseId,note,category,type,Long.parseLong(amount), Calendar.getInstance().getTimeInMillis());
+
+        FirebaseFirestore
+                .getInstance()
+                .collection("expense")
+                .document(expenseId)
+                .set(expenseMode);
+
+                finish();
 
     }
 
