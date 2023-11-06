@@ -14,7 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.UUID;
-
 public class AddExpenseActivity extends AppCompatActivity {
     ActivityAddExpenseBinding  binding;
     private String type;
@@ -23,13 +22,8 @@ public class AddExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityAddExpenseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         type= getIntent().getStringExtra("type");
-
-
     }
-
-
     //for menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,22 +58,16 @@ public class AddExpenseActivity extends AppCompatActivity {
         else{
             type="Expense";
         }
-
         if(amount.trim().length()==0){
             binding.amount.setError("Empty");
             return;
-
         }
         ExpenseMode expenseMode = new ExpenseMode(expenseId,note,category,type,Long.parseLong(amount), Calendar.getInstance().getTimeInMillis());
-
         FirebaseFirestore
                 .getInstance()
                 .collection("expense")
                 .document(expenseId)
                 .set(expenseMode);
-
                 finish();
-
     }
-
 }
