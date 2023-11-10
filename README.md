@@ -4,7 +4,7 @@
 </div>
 
 # ✨ FinanciPal
-SheGuard stands as the quintessential companion for women, ensuring their safety in every circumstance. Through its user-friendly features, it empowers you to swiftly alert your loved ones of your whereabouts and connect with emergency services effortlessly.
+The "Expense Manager with Firebase" project empowers users to take control of their financial well-being by providing a comprehensive and user-friendly expense management solution.
 
 ## Screenshots 📱
 <div align="center">
