@@ -4,7 +4,7 @@
 </div>
 
 # ✨ FinanciPal
-The "Expense Manager with Firebase" project empowers users to take control of their financial well-being by providing a comprehensive and user-friendly expense management solution.
+The "EFinanciPal" with Firebase" project empowers users to take control of their financial well-being by providing a comprehensive and user-friendly expense management solution.
 
 ## Screenshots 📱
 <div align="center">
